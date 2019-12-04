@@ -1,56 +1,75 @@
-﻿
+﻿@model CMS.Data.SiteInfos
 @{
     ViewBag.Title = "Site Bilgileri";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<section id="main-content">
-    <section class="wrapper">
-        <!--overview start-->
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa-laptop"></i> Site Bilgileri</h3>
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="/Admin/Index">Dashboard</a></li>
-                    <li><i class="fa fa-laptop"></i>Site Bilgileri</li>
-                </ol>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-laptop"></i> Site Bilgileri</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="/Admin/Index">Dashboard</a></li>
+            <li><i class="fa fa-laptop"></i>Site Bilgileri</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Site Bilgileri
+            </header>
+            <div class="panel-body">
+                <div class="form">
+                    <form class="form-validate form-horizontal" id="feedback_form" method="post" enctype="multipart/form-data" action="/SiteInfo/Save">
+                        <input type="hidden" class="form-control" name="id" value="@Model.id" required>
+                        <input type="hidden" class="form-control" name="isactive" value="True" required>
+                        <input type="hidden" class="form-control" name="createddate" value="@DateTime.Now" required>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">Site Başlık <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="title" name="title" minlength="5" type="text" value="@Model.title" required />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">Site Anahtar Kelimeler <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="keywords" name="keywords" minlength="5" type="text" value="@Model.keywords" required />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">Site Ünvan</label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="degree" name="degree" type="text" value="@Model.degree" />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">Site Açıklama <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="description" name="description" minlength="5" type="text" value="@Model.description" required />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">Site Logo</label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="logoUrl" name="logoUrl" accept=".png" type="file" />
+                                @if (!string.IsNullOrEmpty(@Model.logoUrl))
+                                {
+                                    <br />
+                                    <img class="img-responsive" src="~/Uploads/@Model.logoUrl" width="150" />
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-primary" type="submit">Kaydet</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Kayıtlar
-                    </header>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Başlık</th>
-                                    <th>Anahtar Kelimeler</th>
-                                    <th>Açıklama</th>
-                                    <th>Ünvan</th>
-                                    <th>Fotoğraf</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </section>
-            </div>
-        </div>
-
-    </section>
-</section>
+        </section>
+    </div>
+</div>

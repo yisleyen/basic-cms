@@ -52,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Db\Db.cs" />
+    <Compile Include="Db\Func.cs" />
     <Compile Include="Db\Repository.cs" />
     <Compile Include="Entities\AboutUs.cs" />
     <Compile Include="Entities\Admins.cs" />

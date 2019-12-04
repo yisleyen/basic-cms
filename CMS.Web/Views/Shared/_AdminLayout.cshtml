@@ -297,6 +297,12 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="" href="/SiteInfo/Index">
+                            <i class="icon_genius"></i>
+                            <span>Site Bilgileri</span>
+                        </a>
+                    </li>
                     <li class="sub-menu">
                         <a href="javascript:;" class="">
                             <i class="icon_document_alt"></i>
@@ -367,7 +373,11 @@
         </aside>
         <!--sidebar end-->
         <!--main content start-->
-        @RenderBody()
+        <section id="main-content">
+            <section class="wrapper">
+                @RenderBody()
+            </section>
+        </section>
         <!--main content end-->
     </section>
     <!-- container section start -->
