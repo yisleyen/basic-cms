@@ -22,7 +22,7 @@
             </header>
             <div class="panel-body">
                 <div class="form">
-                    <form class="form-validate form-horizontal" id="feedback_form" method="post" enctype="multipart/form-data" action="/SiteInfo/Save">
+                    <form class="form-validate form-horizontal" id="feedback_form" method="post" enctype="multipart/form-data" action="/SiteInfos/Save">
                         @Html.AntiForgeryToken()
                         <input type="hidden" class="form-control" name="id" value="@Model.id" required>
                         <input type="hidden" class="form-control" name="isactive" value="True" required>
