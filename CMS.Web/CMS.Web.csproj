@@ -1094,6 +1094,8 @@
     <Content Include="Views\AboutUs\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\SiteInfos\Index.cshtml" />
+    <Content Include="Views\OurServices\Index.cshtml" />
+    <Content Include="Views\OurServices\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1105,7 +1107,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Uploads\" />
-    <Folder Include="Views\OurServices\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

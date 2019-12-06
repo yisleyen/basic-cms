@@ -9,7 +9,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 
-namespace Blog.Data
+namespace CMS.Data
 {
     public static partial class Extensions
     {

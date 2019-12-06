@@ -1,4 +1,5 @@
-﻿using Dapper.FastCrud;
+﻿using Dapper;
+using Dapper.FastCrud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,6 +93,59 @@ namespace CMS.Data.Db
         #endregion
 
         #region our-services
+
+        // Get our service list
+        public static IEnumerable<OurServices> GetServices()
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                var services = connection.Find<OurServices>(statement => statement
+                .Where($"{nameof(OurServices.isactive):C}=1"));
+
+                return services;
+            }
+        }
+
+        // Get our service by id 
+        public static OurServices GetOurServiceById(int serviceId)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                OurServices ourServices = connection.Get(new OurServices { id = serviceId });
+
+                return ourServices;
+            }
+        }
+
+        // Insert our services
+        public static void SaveOrUpdateOurServices(OurServices ourServices, int serviceId)
+        {
+            if (serviceId == 0) // save if user number is 0 
+            {
+                var connection = Repository.GetOpenConnection();
+                {
+                    connection.Insert(ourServices);
+                }
+            }
+            else // update if user number is not 0
+            {
+                var connection = Repository.GetOpenConnection();
+                {
+                    connection.Update(ourServices);
+                }
+            }
+        }
+
+        // Update isactive our services 
+        public static void DeleteOurServicesById(int serviceId)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                string sql = "UPDATE OurServices SET isactive = 0 WHERE id = " + serviceId;
+
+                connection.Query(sql);
+            }
+        }
 
         #endregion
 

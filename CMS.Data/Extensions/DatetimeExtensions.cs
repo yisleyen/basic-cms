@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Data
+namespace CMS.Data
 {
     public static partial class Extensions
     {

@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Blog.Data
+namespace CMS.Data
 {
     public static partial class Extensions
     {
