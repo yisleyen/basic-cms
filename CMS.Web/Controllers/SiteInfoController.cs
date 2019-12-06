@@ -34,6 +34,7 @@ namespace CMS.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(FormCollection form, HttpPostedFileBase logoUrl)
         {
             SiteInfos siteInfos = new SiteInfos();
