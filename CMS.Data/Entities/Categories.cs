@@ -9,6 +9,7 @@ namespace CMS.Data
     {
         [Key]
         [Column("id", TypeName = "int")]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         [Required]
         public int id { get; set; }
 

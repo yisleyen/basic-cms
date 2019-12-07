@@ -51,9 +51,115 @@ namespace CMS.Data.Db
 
         #region blog
 
+        // Get blog list
+        public static IEnumerable<Blogs> GetBlogs()
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                var blogs = connection.Find<Blogs>(statement => statement
+                .Where($"{nameof(Blogs.isactive):C}=1"));
+
+                return blogs;
+            }
+        }
+
+        // Get blog id 
+        public static Blogs GetBlogById(int blogId)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                Blogs blogs = connection.Get(new Blogs { id = blogId });
+
+                return blogs;
+            }
+        }
+
+        // Insert blogs
+        public static void SaveOrUpdateBlogs(Blogs blogs, int blogId)
+        {
+            if (blogId == 0) // save if user number is 0 
+            {
+                var connection = Repository.GetOpenConnection();
+                {
+                    connection.Insert(blogs);
+                }
+            }
+            else // update if user number is not 0
+            {
+                var connection = Repository.GetOpenConnection();
+                {
+                    connection.Update(blogs);
+                }
+            }
+        }
+
+        // Update isactive category
+        public static void DeleteBlogById(int blogId)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                string sql = "UPDATE Blogs SET isactive = 0 WHERE id = " + blogId;
+
+                connection.Query(sql);
+            }
+        }
+
         #endregion
 
         #region category
+
+        // Get category list
+        public static IEnumerable<Categories> GetCategories()
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                var categories = connection.Find<Categories>(statement => statement
+                .Where($"{nameof(Categories.isactive):C}=1"));
+
+                return categories;
+            }
+        }
+
+        // Get category by id 
+        public static Categories GetCategoryById(int categoryId)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                Categories categories = connection.Get(new Categories { id = categoryId });
+
+                return categories;
+            }
+        }
+
+        // Insert categories
+        public static void SaveOrUpdateCategories(Categories categories, int categoryId)
+        {
+            if (categoryId == 0) // save if user number is 0 
+            {
+                var connection = Repository.GetOpenConnection();
+                {
+                    connection.Insert(categories);
+                }
+            }
+            else // update if user number is not 0
+            {
+                var connection = Repository.GetOpenConnection();
+                {
+                    connection.Update(categories);
+                }
+            }
+        }
+
+        // Update isactive category
+        public static void DeleteCategoryById(int categoryId)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                string sql = "UPDATE Categories SET isactive = 0 WHERE id = " + categoryId;
+
+                connection.Query(sql);
+            }
+        }
 
         #endregion
 

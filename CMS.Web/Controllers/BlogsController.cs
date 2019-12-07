@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -10,33 +9,33 @@ using System.Web.Mvc;
 
 namespace CMS.Web.Controllers
 {
-    public class OurServicesController : Controller
+    public class BlogsController : Controller
     {
         string uploadPath = ConfigurationManager.AppSettings["UploadPath"];
 
         [HttpGet]
-        // GET: OurServices
+        // GET: Blogs
         public ActionResult Index()
         {
-            IEnumerable<OurServices> ourServices = Data.Db.Func.GetServices();
+            IEnumerable<Blogs> blogs = Data.Db.Func.GetBlogs();
 
-            return View(ourServices);
+            return View(blogs);
         }
 
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            OurServices ourServices = Data.Db.Func.GetOurServiceById(Convert.ToInt32(id)); // get our service by id
+            Blogs blogs = Data.Db.Func.GetBlogById(Convert.ToInt32(id)); // get blog id
 
-            if (ourServices == null)
+            if (blogs == null)
             {
-                ourServices = new OurServices(); // new our services
+                blogs = new Blogs(); // new blogs
 
-                return View(ourServices); // return our services
+                return View(blogs); // return blogs
             }
             else
             {
-                return View(ourServices); // return our services
+                return View(blogs); // return blogs
             }
         }
 
@@ -45,9 +44,9 @@ namespace CMS.Web.Controllers
         [ValidateInput(false)]
         public ActionResult Save(FormCollection form, HttpPostedFileBase imageUrl)
         {
-            OurServices ourServices = new OurServices();
+            Blogs blogs = new Blogs();
 
-            TryUpdateModel(ourServices, form);
+            TryUpdateModel(blogs, form);
 
             int id = Convert.ToInt32(form["id"]);
 
@@ -66,20 +65,20 @@ namespace CMS.Web.Controllers
 
                 webImage.Save(uploadPath + imageName);
 
-                ourServices.imageUrl = imageName;
+                blogs.imageUrl = imageName;
             }
 
-            Data.Db.Func.SaveOrUpdateOurServices(ourServices, id);
+            Data.Db.Func.SaveOrUpdateBlogs(blogs, id);
 
-            return RedirectToAction("Index", "OurServices");
+            return RedirectToAction("Index", "Blogs");
         }
 
         [HttpGet]
         public ActionResult Delete(string id)
         {
-            Data.Db.Func.DeleteOurServicesById(Convert.ToInt32(id));
+            Data.Db.Func.DeleteBlogById(Convert.ToInt32(id));
 
-            return RedirectToAction("Index", "OurServices");
+            return RedirectToAction("Index", "Blogs");
         }
     }
 }

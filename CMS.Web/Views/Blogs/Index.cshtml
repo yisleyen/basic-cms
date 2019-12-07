@@ -1,15 +1,15 @@
 ﻿
 @{
-    ViewBag.Title = "Hizmetlerimiz";
+    ViewBag.Title = "Bloglar";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="row">
     <div class="col-lg-12">
-        <h3 class="page-header"><i class="fa fa-table"></i> Hizmetlerimiz</h3>
+        <h3 class="page-header"><i class="icon_documents_alt"></i> Bloglar</h3>
         <ol class="breadcrumb">
             <li><i class="fa fa-home"></i><a href="/Admin/Index">Dashboard</a></li>
-            <li><i class="fa fa-table"></i>Hizmetlerimiz</li>
+            <li><i class="icon_documents_alt"></i>Bloglar</li>
         </ol>
     </div>
 </div>
@@ -33,7 +33,7 @@
                                 <td>@item.id</td>
                                 <td><img src="~/Uploads/@item.imageUrl" width="150" /></td>
                                 <td>@item.title</td>
-                                <td><a href="/OurServices/Edit/@item.id">Düzenle</a> | <a href="/OurServices/Delete/@item.id" onclick="return confirm('Silmek istediğinize emin misiniz?');">Sil</a></td>
+                                <td><a href="/Blogs/Edit/@item.id">Düzenle</a> | <a href="/Blogs/Delete/@item.id" onclick="return confirm('Silmek istediğinize emin misiniz?');">Sil</a></td>
                             </tr>
                         }
                     </tbody>

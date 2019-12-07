@@ -1,16 +1,16 @@
-﻿@model CMS.Data.OurServices
+﻿@model CMS.Data.Blogs
 @{
-    ViewBag.Title = "Hizmet Güncelle";
+    ViewBag.Title = "Blog Güncelle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="row">
     <div class="col-lg-12">
-        <h3 class="page-header"><i class="fa fa-table"></i> Hizmet Güncelle</h3>
+        <h3 class="page-header"><i class="fa fa-table"></i> Blog Güncelle</h3>
         <ol class="breadcrumb">
             <li><i class="fa fa-home"></i><a href="/Admin/Index">Dashboard</a></li>
-            <li><i class="fa fa-table"></i><a href="/OurServices/Index">Hizmetlerimiz</a></li>
-            <li><i class="fa fa-table"></i>Hizmet Güncelle</li>
+            <li><i class="fa fa-table"></i><a href="/Blogs/Index">Bloglar</a></li>
+            <li><i class="fa fa-table"></i>Blog Güncelle Güncelle</li>
         </ol>
     </div>
 </div>
@@ -19,11 +19,11 @@
     <div class="col-lg-12">
         <section class="panel">
             <header class="panel-heading">
-                Hizmet Güncelle
+                Blog Güncelle
             </header>
             <div class="panel-body">
                 <div class="form">
-                    <form class="form-validate form-horizontal" id="feedback_form" method="post" enctype="multipart/form-data" action="/OurServices/Save">
+                    <form class="form-validate form-horizontal" id="feedback_form" method="post" enctype="multipart/form-data" action="/Blogs/Save">
                         @Html.AntiForgeryToken()
                         <input type="hidden" class="form-control" name="id" value="@Model.id" required>
                         <input type="hidden" class="form-control" name="isactive" value="True" required>
@@ -38,6 +38,17 @@
                             <label for="cname" class="control-label col-lg-2">Açıklama <span class="required">*</span></label>
                             <div class="col-lg-10">
                                 <textarea name="description" class="ckeditor">@Model.description</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">Kategori <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                                <select class="form-control m-bot15" name="categoryid" id="categoryid" required>
+                                    @foreach (var item in CMS.Data.Db.Func.GetCategories())
+                                    {
+                                        <option value="@item.id">@item.title</option>
+                                    }
+                                </select>
                             </div>
                         </div>
                         <div class="form-group ">
