@@ -1,0 +1,71 @@
+﻿@model CMS.Data.Slides
+@{
+    ViewBag.Title = "Banner Güncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="icon_piechart"></i> Blog Güncelle</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="/Dashboard/Index">Dashboard</a></li>
+            <li><i class="icon_piechart"></i><a href="/Slides/Index">Bannerlar</a></li>
+            <li><i class="icon_piechart"></i>Banner Güncelle</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Banner Güncelle
+            </header>
+            <div class="panel-body">
+                <div class="form">
+                    <form class="form-validate form-horizontal" id="feedback_form" method="post" enctype="multipart/form-data" action="/Slides/Save">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" class="form-control" name="id" value="@Model.id" required>
+                        <input type="hidden" class="form-control" name="isactive" value="True" required>
+                        <input type="hidden" class="form-control" name="createddate" value="@DateTime.Now" required>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">Başlık <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="title" name="title" minlength="5" type="text" value="@Model.title" required />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">Açıklama <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="description" name="description" minlength="5" type="text" value="@Model.description" required />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">Link</label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="url" name="url" minlength="5" type="text" value="@Model.url" />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">Banner <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="imageUrl" name="imageUrl" accept=".png,.jpg,.jpeg" type="file" required />
+                                @if (!string.IsNullOrEmpty(@Model.imageUrl))
+                                {
+                                    <br />
+                                    <img class="img-responsive" src="~/Uploads/@Model.imageUrl" width="150" />
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-primary" type="submit">Kaydet</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>

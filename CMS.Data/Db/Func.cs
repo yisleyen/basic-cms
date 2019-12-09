@@ -47,6 +47,20 @@ namespace CMS.Data.Db
 
         #region admin
 
+        public static IEnumerable<Admins> ValidateUser(string email, string password)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                var admins = connection.Find<Admins>(statement => statement
+                .Where($"{nameof(Admins.email):C}=@Email")
+                .Where($"{nameof(Admins.password):C}=@Password")
+                .WithParameters(new { Email = email, Password = password })
+                    );
+
+                return admins;
+            }
+        }
+
         #endregion
 
         #region blog
@@ -288,6 +302,63 @@ namespace CMS.Data.Db
             }
         }
 
+
+        #endregion
+
+        #region slides
+
+        // Get slide list
+        public static IEnumerable<Slides> GetSlides()
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                var slides = connection.Find<Slides>(statement => statement
+                .Where($"{nameof(Slides.isactive):C}=1"));
+
+                return slides;
+            }
+        }
+
+        // Get slide by id 
+        public static Slides GetSlideById(int slideId)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                Slides slides = connection.Get(new Slides { id = slideId });
+
+                return slides;
+            }
+        }
+
+        // Insert slides
+        public static void SaveOrUpdateSlides(Slides slides, int slideId)
+        {
+            if (slideId == 0) // save if user number is 0 
+            {
+                var connection = Repository.GetOpenConnection();
+                {
+                    connection.Insert(slides);
+                }
+            }
+            else // update if user number is not 0
+            {
+                var connection = Repository.GetOpenConnection();
+                {
+                    connection.Update(slides);
+                }
+            }
+        }
+
+        // Update isactive slide
+        public static void DeleteSlideById(int slideId)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                string sql = "UPDATE Slides SET isactive = 0 WHERE id = " + slideId;
+
+                connection.Query(sql);
+            }
+        }
 
         #endregion
     }

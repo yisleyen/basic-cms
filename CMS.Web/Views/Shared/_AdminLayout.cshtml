@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@{
+    if (Session.Count == 0)
+    {
+        Response.Redirect("/Admin/Login");
+    }
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -36,7 +43,7 @@
             </div>
 
             <!--logo start-->
-            <a href="/Admin/Index" class="logo">BasicCMS <span class="lite">Admin</span></a>
+            <a href="/Dashboard/Index" class="logo">BasicCMS <span class="lite">Admin</span></a>
             <!--logo end-->
 
             <div class="nav search-row" id="top_menu">
@@ -275,7 +282,7 @@
                                 <a href="#"><i class="icon_chat_alt"></i> Chats</a>
                             </li>
                             <li>
-                                <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                                <a href="/Logout/Index"><i class="icon_key_alt"></i> Çıkış</a>
                             </li>
                             <li>
                                 <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
@@ -297,7 +304,7 @@
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu">
                     <li class="active">
-                        <a class="" href="/Admin/Index">
+                        <a class="" href="/Dashboard/Index">
                             <i class="icon_house_alt"></i>
                             <span>Dashboard</span>
                         </a>
@@ -329,6 +336,17 @@
                         <ul class="sub">
                             <li><a class="" href="/OurServices/Index">Hizmetler</a></li>
                             <li><a class="" href="/OurServices/Edit">Hizmet Ekle</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_table"></i>
+                            <span>Bannerlar</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><a class="" href="/Slides/Index">Bannerlar</a></li>
+                            <li><a class="" href="/Slides/Edit">Banner Ekle</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">

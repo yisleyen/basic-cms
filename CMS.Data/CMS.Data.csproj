@@ -57,6 +57,7 @@
     <Compile Include="Entities\AboutUs.cs" />
     <Compile Include="Entities\Admins.cs" />
     <Compile Include="Entities\Blogs.cs" />
+    <Compile Include="Entities\Slides.cs" />
     <Compile Include="Entities\Categories.cs" />
     <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\OurServices.cs" />

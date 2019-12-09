@@ -1,7 +1,71 @@
-﻿
-@{
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<section id="featured">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="main-slider" class="flexslider">
+                    <ul class="slides">
+                        @foreach (var item in CMS.Data.Db.Func.GetSlides())
+                        {
+                            <li>
+                                <img src="~/Uploads/@item.imageUrl" alt="@item.title" />
+                                <div class="flex-caption">
+                                    <h3>@item.title</h3>
+                                    <p>@item.description</p>
+                                    @if (!string.IsNullOrEmpty(item.url))
+                                    {
+                                        <a href="@item.url" class="btn btn-theme">Devamını Oku</a>
+                                    }
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="callaction">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="big-cta">
+                    <div class="cta-text">
+                        <h2><span>Moderna</span> HTML Business Template</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="heading">Hizmetlerimiz</h4>
+                <div class="row">
+                    <section id="projects">
+                        <ul id="thumbs" class="portfolio">
+                            @foreach (var item in CMS.Data.Db.Func.GetServices())
+                            {
+                                <li class="col-lg-3 design" data-id="id-0" data-type="web">
+                                    <div class="item-thumbs">
+                                        <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="@item.title" href="~/Uploads/@item.imageUrl">
+                                            <span class="overlay-img"></span>
+                                            <span class="overlay-img-thumb font-icon-plus"></span>
+                                        </a>
+                                        <img src="~/Uploads/@item.imageUrl" alt="@item.description">
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

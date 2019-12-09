@@ -9,8 +9,19 @@ namespace CMS.Data
     {
         [Key]
         [Column("id", TypeName = "int")]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         [Required]
         public int id { get; set; }
+
+        [Column("name", TypeName = "nvarchar")]
+        [MaxLength(100)]
+        [Required]
+        public string name { get; set; }
+
+        [Column("surname", TypeName = "nvarchar")]
+        [MaxLength(100)]
+        [Required]
+        public string surname { get; set; }
 
         [Column("email", TypeName = "nvarchar")]
         [MaxLength(255)]
