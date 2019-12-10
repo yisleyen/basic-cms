@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Hizmetlerimiz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li><a href="/Home/Index/"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+                    <li class="active">Hizmetlerimiz</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <section id="projects">
+                        <ul id="thumbs" class="portfolio">
+                            @foreach (var item in CMS.Data.Db.Func.GetServices())
+                            {
+                                <li class="item-thumbs col-lg-3 design" data-id="id-0" data-type="web">
+                                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="@item.title" href="~/Uploads/@item.imageUrl">
+                                        <span class="overlay-img"></span>
+                                        <span class="overlay-img-thumb font-icon-plus"></span>
+                                    </a>
+                                    <img src="~/Uploads/@item.imageUrl" alt="@item.description">
+                                </li>
+                            }
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

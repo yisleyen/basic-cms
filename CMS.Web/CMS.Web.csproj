@@ -1197,6 +1197,11 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Slides\Index.cshtml" />
     <Content Include="Views\Slides\Edit.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Home\SiteFooter.cshtml" />
+    <Content Include="Views\Home\SiteHeader.cshtml" />
+    <Content Include="Views\Home\OurServices.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

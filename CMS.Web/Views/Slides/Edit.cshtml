@@ -37,7 +37,7 @@
                         <div class="form-group ">
                             <label for="cname" class="control-label col-lg-2">Açıklama <span class="required">*</span></label>
                             <div class="col-lg-10">
-                                <input class="form-control" id="description" name="description" minlength="5" type="text" value="@Model.description" required />
+                                <textarea name="description" class="ckeditor" required>@Model.description</textarea>
                             </div>
                         </div>
                         <div class="form-group ">
