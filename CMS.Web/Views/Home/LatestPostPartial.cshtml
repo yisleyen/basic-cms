@@ -1,0 +1,17 @@
+﻿@model IEnumerable<CMS.Data.Blogs>
+<div class="widget">
+    <h5 class="widgetheading">Son Yazılar</h5>
+    <ul class="recent">
+        @foreach (var item in Model)
+        {
+            <li>
+                <img src="~/Uploads/@item.imageUrl" width="65" class="pull-left" alt="@item.title" />
+                <h6><a href="/Home/BlogDetails/@item.id">@item.title</a></h6>
+                <p>
+                    @Html.Raw(item.description.Substring(0, 90))
+                </p>
+            </li>
+        }
+    </ul>
+</div>
+

@@ -1,0 +1,10 @@
+﻿@model IEnumerable<CMS.Data.Categories>
+<div class="widget">
+    <h5 class="widgetheading">Kategoriler</h5>
+    <ul class="cat">
+        @foreach (var item in Model)
+        {
+            <li><i class="icon-angle-right"></i><a href="/Home/Blog/@item.id">@item.title</a></li>
+        }
+    </ul>
+</div>

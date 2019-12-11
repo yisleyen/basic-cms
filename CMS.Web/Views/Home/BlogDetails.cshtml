@@ -1,0 +1,59 @@
+﻿@model CMS.Data.Blogs
+
+@{
+    ViewBag.Title = Model.title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li><a href="/Home/Index/"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+                    <li><a href="/Home/Blog/">Blog</a></li>
+                    <li class="active">@Model.title</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <article>
+                    <div class="post-image">
+                        <div class="post-heading">
+                            <h3>@Model.title</h3>
+                        </div>
+                        <img src="~/Uploads/@Model.imageUrl" alt="@Model.title" />
+                    </div>
+                    <p>
+                        @Html.Raw(Model.description)
+                    </p>
+                    <div class="bottom-article">
+                        <ul class="meta-post">
+                            <li><i class="icon-calendar"></i>@Model.createddate.Value.ToString("dd MMMM yyyy HH:mm")</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+            <div class="col-lg-4">
+                <aside class="right-sidebar">
+                    <div class="widget">
+                        <form class="form-search">
+                            <input class="form-control" type="text" placeholder="Search..">
+                        </form>
+                    </div>
+                    @{
+                        Html.RenderAction("CategoryPartial", "Home");
+                    }
+                    @{
+                        Html.RenderAction("LatestPostPartial", "Home");
+                    }
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>

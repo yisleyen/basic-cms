@@ -118,6 +118,21 @@ namespace CMS.Data.Db
             }
         }
 
+        public static IEnumerable<dynamic> GetSiteBlogs()
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                string sql = "select b.*, c.title as categoryName" + Environment.NewLine;
+                sql += "from Blogs as b, Categories as c" + Environment.NewLine;
+                sql += "where b.categoryid = c.id and b.isactive = 1" + Environment.NewLine;
+                sql += "order by b.id desc" + Environment.NewLine;
+
+                var blogs = connection.Query(sql);
+
+                return blogs;
+            }
+        }
+
         #endregion
 
         #region category

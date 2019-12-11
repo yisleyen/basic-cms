@@ -24,8 +24,14 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h4>Formu doldurarak bize <strong>ulaşabilirsiniz</strong></h4>
-                <div id="sendmessage">Mesajınız gönderildi, teşekkürler!</div>
-                <div id="errormessage"></div>
+                @if (!string.IsNullOrEmpty(ViewBag.Message))
+                {
+                    <div id="sendmessage">@ViewBag.Message</div>
+                }
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div id="errormessage">@ViewBag.ErrorMessage</div>
+                }
                 <form action="/Home/Contact/" method="post" role="form" class="contactForm">
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" id="name" placeholder="Adınız" data-rule="minlen:4" data-msg="Lütfen en az 4 karakter giriniz" />
