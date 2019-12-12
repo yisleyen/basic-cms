@@ -88,6 +88,22 @@ namespace CMS.Data.Db
             }
         }
 
+        // Get blog id 
+        public static IEnumerable<Blogs> GetBlogByCategoryId(int categoryid)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                string sql = "select b.*, c.title as categoryName" + Environment.NewLine;
+                sql += "from Blogs as b, Categories as c" + Environment.NewLine;
+                sql += "where b.categoryid = c.id and b.isactive = 1 and b.categoryid = @categoryid" + Environment.NewLine;
+                sql += "order by b.id desc" + Environment.NewLine;
+
+                var blogs = connection.Query<Blogs>(sql, new { categoryid = new[] { categoryid } });
+
+                return blogs;
+            }
+        }
+
         // Insert blogs
         public static void SaveOrUpdateBlogs(Blogs blogs, int blogId)
         {
@@ -370,6 +386,77 @@ namespace CMS.Data.Db
             var connection = Repository.GetOpenConnection();
             {
                 string sql = "UPDATE Slides SET isactive = 0 WHERE id = " + slideId;
+
+                connection.Query(sql);
+            }
+        }
+
+        #endregion
+
+        #region comments
+
+        // Get all comment list
+        public static IEnumerable<Comments> GetAllComments()
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                string query = "SELECT * FROM Comments ORDER BY id DESC";
+
+                var comments = connection.Query<Comments>(query);
+
+                return comments;
+            }
+        }
+
+        // Get active comment list
+        public static IEnumerable<Comments> GetComments()
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                string query = "SELECT * FROM Comments WHERE isactive = 1 ORDER BY id DESC";
+
+                var comments = connection.Query<Comments>(query);
+
+                return comments;
+            }
+        }
+
+        // Get comment by id 
+        public static Comments GetCommentById(int commentid)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                Comments comments = connection.Get(new Comments { id = commentid });
+
+                return comments;
+            }
+        }
+
+        // Insert comments
+        public static void SaveOrUpdateComments(Comments comments, int commentid)
+        {
+            if (commentid == 0) // save if user number is 0 
+            {
+                var connection = Repository.GetOpenConnection();
+                {
+                    connection.Insert(comments);
+                }
+            }
+            else // update if user number is not 0
+            {
+                var connection = Repository.GetOpenConnection();
+                {
+                    connection.Update(comments);
+                }
+            }
+        }
+
+        // Update isactive comment
+        public static void DeleteCommentById(int commentid)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                string sql = "UPDATE Comments SET isactive = 0 WHERE id = " + commentid;
 
                 connection.Query(sql);
             }

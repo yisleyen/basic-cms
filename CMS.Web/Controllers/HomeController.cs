@@ -96,11 +96,35 @@ namespace CMS.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult CategoryBlog(int id)
+        {
+            IEnumerable<Blogs> blogs = Data.Db.Func.GetBlogByCategoryId(id);
+
+            return View(blogs);
+        }
+
+        [HttpGet]
         public ActionResult BlogDetails(int id)
         {
             Blogs blog = Data.Db.Func.GetBlogById(id);
 
             return View(blog);
+        }
+
+        [HttpPost]
+        public ActionResult CommentSave(FormCollection form)
+        {
+            Comments comments = new Comments();
+
+            TryUpdateModel(comments, form);
+
+            int id = Convert.ToInt32(form["id"]);
+
+            Data.Db.Func.SaveOrUpdateComments(comments, id);
+
+            ViewBag.Message = "Yorumunuz kayıt edilmiştir, onay işleminden sonra yayınlanacaktır.";
+
+            return RedirectToAction("BlogDetails/" + form["blogid"], "Home");
         }
 
         public ActionResult CategoryPartial()

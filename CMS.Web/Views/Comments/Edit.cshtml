@@ -1,0 +1,75 @@
+﻿@model CMS.Data.Comments
+@{
+    ViewBag.Title = "Yorum Güncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="icon_documents_alt"></i> Yorum Güncelle</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="/Dashboard/Index">Dashboard</a></li>
+            <li><i class="icon_documents_alt"></i><a href="/Comments/Index">Yorumlar</a></li>
+            <li><i class="icon_documents_alt"></i>Yorum Güncelle</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Yorum Güncelle
+            </header>
+            <div class="panel-body">
+                <div class="form">
+                    <form class="form-validate form-horizontal" id="feedback_form" method="post" action="/Comments/Save">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" class="form-control" name="id" value="@Model.id" required>
+                        <input type="hidden" class="form-control" name="createddate" value="@DateTime.Now" required>
+                        <input type="hidden" class="form-control" name="name" value="@Model.name" required>
+                        <input type="hidden" class="form-control" name="email" value="@Model.email" required>
+                        <input type="hidden" class="form-control" name="comment" value="@Model.comment" required>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">Adı <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                                @Model.name
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">E-posta adresi <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                                @Model.email
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">Yorum <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                                @Model.comment
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cname" class="control-label col-lg-2">Onay durumu <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                                @if (Model.isactive == true)
+                                {
+                                    @Html.CheckBox("isactive", true)
+                                }
+                                else
+                                {
+                                    @Html.CheckBox("isactive", false)
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-primary" type="submit">Kaydet</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>
