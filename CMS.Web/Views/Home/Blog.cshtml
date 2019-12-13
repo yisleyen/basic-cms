@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Blog";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="breadcrumb">
-                    <li><a href="/Home/Index/"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+                    <li><a href="/"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
                     <li class="active">Blog</li>
                 </ul>
             </div>
@@ -25,7 +24,7 @@
                     <article>
                         <div class="post-image">
                             <div class="post-heading">
-                                <h3><a href="/Home/BlogDetails/@item.id">@item.title</a></h3>
+                                <h3><a href="/blog/@CMS.Data.Extensions.ToUrlSlug(item.title)-@item.id">@item.title</a></h3>
                             </div>
                             <img src="~/Uploads/@item.imageUrl" alt="@item.title" />
                         </div>
@@ -35,9 +34,9 @@
                         <div class="bottom-article">
                             <ul class="meta-post">
                                 <li><i class="icon-calendar"></i>@item.createddate.ToString("dd MMMM yyyy HH:mm")</li>
-                                <li><i class="icon-folder-open"></i><a href="#"> @item.categoryName</a></li>
+                                <li><i class="icon-folder-open"></i>@item.categoryName</li>
                             </ul>
-                            <a href="/Home/BlogDetails/@item.id" class="pull-right">Devamını oku <i class="icon-angle-right"></i></a>
+                            <a href="/blog/@CMS.Data.Extensions.ToUrlSlug(item.title)-@item.id" class="pull-right">Devamını oku <i class="icon-angle-right"></i></a>
                         </div>
                     </article>
                 }

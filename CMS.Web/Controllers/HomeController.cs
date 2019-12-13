@@ -11,29 +11,38 @@ namespace CMS.Web.Controllers
     public class HomeController : Controller
     {
         [HttpGet]
+        [Route("")]
         // GET: Home
         public ActionResult Index()
         {
+            ViewBag.SiteInfos = Data.Db.Func.GetSiteInfos();
+
             return View();
         }
 
         [HttpGet]
+        [Route("about-us")]
         public ActionResult AboutUs()
         {
+            ViewBag.SiteInfos = Data.Db.Func.GetSiteInfos();
             AboutUs aboutUs = Data.Db.Func.GetAboutUs();
-
+            
             return View(aboutUs);
         }
 
         [HttpGet]
+        [Route("our-services")]
         public ActionResult OurServices()
         {
+            ViewBag.SiteInfos = Data.Db.Func.GetSiteInfos();
             return View();
         }
 
         [HttpGet]
+        [Route("contact")]
         public ActionResult Contact()
         {
+            ViewBag.SiteInfos = Data.Db.Func.GetSiteInfos();
             Contact contact = Data.Db.Func.GetContact();
 
             return View(contact);
@@ -90,22 +99,28 @@ namespace CMS.Web.Controllers
         }
 
         [HttpGet]
+        [Route("blog")]
         public ActionResult Blog()
         {
+            ViewBag.SiteInfos = Data.Db.Func.GetSiteInfos();
             return View();
         }
 
         [HttpGet]
+        [Route("blog/{title}/{id:int}")]
         public ActionResult CategoryBlog(int id)
         {
+            ViewBag.SiteInfos = Data.Db.Func.GetSiteInfos();
             IEnumerable<Blogs> blogs = Data.Db.Func.GetBlogByCategoryId(id);
 
             return View(blogs);
         }
 
         [HttpGet]
+        [Route("blog/{title}-{id:int}")]
         public ActionResult BlogDetails(int id)
         {
+            ViewBag.SiteInfos = Data.Db.Func.GetSiteInfos();
             Blogs blog = Data.Db.Func.GetBlogById(id);
 
             return View(blog);

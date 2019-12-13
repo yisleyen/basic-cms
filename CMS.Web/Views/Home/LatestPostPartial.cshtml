@@ -6,7 +6,7 @@
         {
             <li>
                 <img src="~/Uploads/@item.imageUrl" width="65" class="pull-left" alt="@item.title" />
-                <h6><a href="/Home/BlogDetails/@item.id">@item.title</a></h6>
+                <h6><a href="/blog/@CMS.Data.Extensions.ToUrlSlug(item.title)-@item.id">@item.title</a></h6>
                 <p>
                     @Html.Raw(item.description.Substring(0, 90))
                 </p>
