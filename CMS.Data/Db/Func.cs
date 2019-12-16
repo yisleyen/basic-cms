@@ -51,15 +51,67 @@ namespace CMS.Data.Db
         {
             var connection = Repository.GetOpenConnection();
             {
-                var admins = connection.Find<Admins>(statement => statement
-                .Where($"{nameof(Admins.email):C}=@Email")
-                .Where($"{nameof(Admins.password):C}=@Password")
-                .WithParameters(new { Email = email, Password = password })
-                    );
+                string sql = "SELECT * FROM Admins WHERE email = @Email and password = @Password;";
+
+                IEnumerable<Admins> admins = connection.Query<Admins>(sql, new { Email = email, Password = password });
 
                 return admins;
             }
         }
+
+        // Get user list
+        public static IEnumerable<Admins> GetAllUsers()
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                var admins = connection.Find<Admins>(statement => statement
+                .Where($"{nameof(Admins.isactive):C}=1"));
+
+                return admins;
+            }
+        }
+
+        // Get user by id 
+        public static Admins GetUserById(int userid)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                Admins admins = connection.Get(new Admins { id = userid });
+
+                return admins;
+            }
+        }
+
+        // Insert admins
+        public static void SaveOrUpdateCategories(Admins admins, int userid)
+        {
+            if (userid == 0) // save if user number is 0 
+            {
+                var connection = Repository.GetOpenConnection();
+                {
+                    connection.Insert(admins);
+                }
+            }
+            else // update if user number is not 0
+            {
+                var connection = Repository.GetOpenConnection();
+                {
+                    connection.Update(admins);
+                }
+            }
+        }
+
+        // Update isactive admin
+        public static void DeleteUserById(int userid)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                string sql = "UPDATE Admins SET isactive = 0 WHERE id = " + userid;
+
+                connection.Query(sql);
+            }
+        }
+
 
         #endregion
 
@@ -418,6 +470,18 @@ namespace CMS.Data.Db
                 var comments = connection.Query<Comments>(query);
 
                 return comments;
+            }
+        }
+
+        public static int GetPassiveCommentCount()
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                string query = "SELECT * FROM Comments WHERE isactive = 0 ORDER BY id DESC";
+
+                var comments = connection.Query<Comments>(query);
+
+                return comments.Count();
             }
         }
 

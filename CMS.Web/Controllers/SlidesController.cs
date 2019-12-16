@@ -41,6 +41,7 @@ namespace CMS.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Save(FormCollection form, HttpPostedFileBase imageUrl)
         {
             Slides slides = new Slides();

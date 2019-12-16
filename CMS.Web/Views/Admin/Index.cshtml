@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Kullanıcılar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="icon_documents_alt"></i> Kullanıcılar</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="/Dashboard/Index">Dashboard</a></li>
+            <li><i class="fa fa-user"></i>Kullanıcılar</li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Adı</th>
+                            <th>Soyadı</th>
+                            <th>E-Posta adresi</th>
+                            <th>Yetki</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.id</td>
+                                <td>@item.name</td>
+                                <td>@item.surname</td>
+                                <td>@item.email</td>
+                                <td>@item.authority</td>
+                                <td><a href="/Admin/Edit/@item.id">Düzenle</a> | <a href="/Admin/Delete/@item.id" onclick="return confirm('Silmek istediğinize emin misiniz?');">Sil</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>

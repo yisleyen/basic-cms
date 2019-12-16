@@ -1,4 +1,5 @@
 ﻿using CMS.Data;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -100,18 +101,24 @@ namespace CMS.Web.Controllers
 
         [HttpGet]
         [Route("blog")]
-        public ActionResult Blog()
+        public ActionResult Blog(int? page, int pageSize = 5)
         {
             ViewBag.SiteInfos = Data.Db.Func.GetSiteInfos();
-            return View();
+
+            var pageNumber = page ?? 1;
+            var blogs = Data.Db.Func.GetSiteBlogs().ToPagedList(pageNumber, pageSize);
+
+            return View(blogs);
         }
 
         [HttpGet]
         [Route("blog/{title}/{id:int}")]
-        public ActionResult CategoryBlog(int id)
+        public ActionResult CategoryBlog(int id, int? page, int pageSize = 5)
         {
             ViewBag.SiteInfos = Data.Db.Func.GetSiteInfos();
-            IEnumerable<Blogs> blogs = Data.Db.Func.GetBlogByCategoryId(id);
+
+            var pageNumber = page ?? 1;
+            IEnumerable<Blogs> blogs = Data.Db.Func.GetBlogByCategoryId(id).ToPagedList(pageNumber, pageSize);
 
             return View(blogs);
         }
