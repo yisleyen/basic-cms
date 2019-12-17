@@ -15,7 +15,7 @@
                                 <img src="~/Uploads/@item.imageUrl" alt="@item.title" />
                                 <div class="flex-caption">
                                     <h3>@item.title</h3>
-                                    <p>@item.description</p>
+                                    <p>@Html.Raw(item.description)</p>
                                     @if (!string.IsNullOrEmpty(item.url))
                                     {
                                         <a href="@item.url" class="btn btn-theme">Devamını Oku</a>

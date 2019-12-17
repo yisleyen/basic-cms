@@ -27,6 +27,7 @@
                         @Html.AntiForgeryToken()
                         <input type="hidden" class="form-control" name="id" value="@Model.id" required>
                         <input type="hidden" class="form-control" name="createddate" value="@DateTime.Now" required>
+                        <input type="hidden" class="form-control" name="blogid" value="@Model.blogid" required>
                         <input type="hidden" class="form-control" name="name" value="@Model.name" required>
                         <input type="hidden" class="form-control" name="email" value="@Model.email" required>
                         <input type="hidden" class="form-control" name="comment" value="@Model.comment" required>

@@ -19,7 +19,7 @@ namespace CMS.Data
         public string title { get; set; }
 
         [Column("description", TypeName = "nvarchar")]
-        [MaxLength(500)]
+        [MaxLength]
         public string description { get; set; }
 
         [Column("imageUrl", TypeName = "nvarchar")]

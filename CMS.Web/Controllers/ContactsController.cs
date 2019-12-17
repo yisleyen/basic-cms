@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace CMS.Web.Controllers
 {
-    public class ContactController : Controller
+    public class ContactsController : Controller
     {
         [HttpGet]
         // GET: Contact
@@ -40,7 +40,7 @@ namespace CMS.Web.Controllers
 
             Data.Db.Func.SaveOrUpdateContact(contact, id);
 
-            return RedirectToAction("Index", "Contact");
+            return RedirectToAction("Index", "Contacts");
         }
     }
 }

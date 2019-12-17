@@ -44,6 +44,7 @@
                             <h4>Yorum Yap</h4>
                             <input type="hidden" class="form-control" name="id" value="0" required>
                             <input type="hidden" class="form-control" name="blogid" value="@Model.id" required>
+                            <input type="hidden" class="form-control" name="blogtitle" value="@Model.title" required>
                             <input type="hidden" class="form-control" name="isactive" value="False" required>
                             <input type="hidden" class="form-control" name="createddate" value="@DateTime.Now" required>
                             <input type="text" id="name" name="name" placeholder="Adınız" class="form-control" required />
@@ -58,8 +59,11 @@
                 </div>
                 <div class="row">
                     <div>
-                        <h4>@Model.title yazısına ait yorumlar</h4>
-                        @foreach (var item in CMS.Data.Db.Func.GetComments())
+                        @if (CMS.Data.Db.Func.GetCommentByBlogID(Convert.ToInt32(Model.id)).Count() > 0)
+                        {
+                            <h4>@Model.title yazısına ait yorumlar</h4>
+                        }
+                        @foreach (var item in CMS.Data.Db.Func.GetCommentByBlogID(Convert.ToInt32(Model.id)))
                         {
                             <p>@item.name - @item.createddate.Value.ToString("dd MMMM yyyy HH:mm")</p>
                             <p>@item.comment</p>

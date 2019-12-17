@@ -22,7 +22,7 @@ namespace CMS.Data
         public string keywords { get; set; }
 
         [Column("description", TypeName = "nvarchar")]
-        [MaxLength(500)]
+        [MaxLength]
         public string description { get; set; }
 
         [Column("logoUrl", TypeName = "nvarchar")]

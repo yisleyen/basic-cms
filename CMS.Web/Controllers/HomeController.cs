@@ -27,7 +27,7 @@ namespace CMS.Web.Controllers
         {
             ViewBag.SiteInfos = Data.Db.Func.GetSiteInfos();
             AboutUs aboutUs = Data.Db.Func.GetAboutUs();
-            
+
             return View(aboutUs);
         }
 
@@ -146,7 +146,7 @@ namespace CMS.Web.Controllers
 
             ViewBag.Message = "Yorumunuz kayıt edilmiştir, onay işleminden sonra yayınlanacaktır.";
 
-            return RedirectToAction("BlogDetails/" + form["blogid"], "Home");
+            return Redirect("/blog/" + Extensions.ToUrlSlug(form["blogtitle"]) + "-" + form["blogid"]);
         }
 
         public ActionResult CategoryPartial()

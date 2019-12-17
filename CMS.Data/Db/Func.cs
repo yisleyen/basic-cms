@@ -473,6 +473,19 @@ namespace CMS.Data.Db
             }
         }
 
+        // Get active comment list by blog id
+        public static IEnumerable<Comments> GetCommentByBlogID(int blogId)
+        {
+            var connection = Repository.GetOpenConnection();
+            {
+                string query = "SELECT * FROM Comments WHERE isactive = 1 and blogid = @BlogId ORDER BY id DESC";
+
+                var comments = connection.Query<Comments>(query, new { BlogId = blogId });
+
+                return comments;
+            }
+        }
+
         public static int GetPassiveCommentCount()
         {
             var connection = Repository.GetOpenConnection();
